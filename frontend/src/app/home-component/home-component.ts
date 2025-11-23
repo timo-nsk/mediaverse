@@ -5,6 +5,7 @@ import {RandomMediumService} from './random-medium.service';
 import {StatistikComponent} from './statistik-component/statistik-component';
 import {MediumTypPipe} from '../mediumtyp.pipe';
 import {PlatformPipe} from '../platform.pipe';
+import {Medium} from '../domain/medium';
 
 @Component({
   selector: 'app-home-component',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
       next: data => {
         this.currentMedien = data;
         this.randomMediumService = new RandomMediumService(this.currentMedien)
+        console.log(this.currentMedien)
       }
     })
   }

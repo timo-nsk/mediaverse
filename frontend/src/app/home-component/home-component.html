@@ -2,25 +2,28 @@
   <section id="aktuelle-medien-container" class="card">
     <h3 id="aktuelle-medien-container-header">Gerade dran</h3>
     @if(currentMedien) {
-      @for(entry of Object.keys(currentMedien); track currentMedien) {
-        <h4>{{ entry | mediumTypTransform}}</h4>
+      <div *ngFor="let entry of currentMedien | keyvalue">
+        <h4>{{ entry.key | mediumTypTransform}}</h4>
         <ul>
-          @for(medium of entry; track medium) {
-            <li>
-              @if(entry == 'SERIE' || entry == 'ANIME') {
-                {{ medium }} - Folge {{ medium }}/{{ medium }}
-              } @else if (entry == 'FILM') {
-                {{ medium }}
-              } @else if (entry == 'MANGA' || entry == 'PODCAST') {
-                {{ medium }} - Kapitel {{ medium }}/{{ medium }}
-              } @else if (entry == 'VIDEOSPIEL') {
-                {{ medium }} ({{ medium.platform | platformTransform }})
-              } @else if (entry == 'BUCH') {
-                {{ medium }} - Seite {{ medium }}/{{ medium }}
-              }
-            </li>
-          }
+          <li *ngFor="let medium of entry.value">
+            <ng-container *ngIf="entry.key == 'SERIE' || entry.key == 'ANIME'">
+              {{ medium.titel }} - Folge {{ medium.currentFolge }}/{{ medium.folgen }}
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'FILM'">
+              {{ medium.titel }}
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'MANGA' || entry.key == 'PODCAST'">
+              {{ medium.titel }} - Kapitel {{ medium.currentKapitel }}/{{ medium.kapitel }}
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'VIDEOSPIEL'">
+              {{ medium.titel }} ({{ medium.platform | platformTransform }})
+            </ng-container>
+            <ng-container *ngIf="entry.key == 'BUCH'">
+              {{ medium.titel }} - Seite {{ medium.currentSeite }}/{{ medium.seiten }}
+            </ng-container>
+          </li>
         </ul>
+      </div>
       }
       <div id="next-container">
         <div>
@@ -30,14 +33,14 @@
           </button>
         </div>
         <div id="gewaehltes-medium-container">
-          @if(randomMedium != null) {
+          <ng-container *ngIf="randomMedium != null">
             <div>
               <p id="random-medium"><span>{{randomMedium.titel}}</span></p>
             </div>
-          }
+          </ng-container>
         </div>
       </div>
-    }
+
 
   </section>
   <section id="uebersicht-content-container" class="card">
