@@ -8,15 +8,15 @@
           @for(medium of entry; track medium) {
             <li>
               @if(entry == 'SERIE' || entry == 'ANIME') {
-                {{ medium.titel }} - Folge {{ medium.currentFolge }}/{{ medium.folgen }}
+                {{ medium }} - Folge {{ medium }}/{{ medium }}
               } @else if (entry == 'FILM') {
-                {{ medium.titel }}
+                {{ medium }}
               } @else if (entry == 'MANGA' || entry == 'PODCAST') {
-                {{ medium.titel }} - Kapitel {{ medium.currentKapitel }}/{{ medium.kapitel }}
+                {{ medium }} - Kapitel {{ medium }}/{{ medium }}
               } @else if (entry == 'VIDEOSPIEL') {
-                {{ medium.titel }} ({{ medium.platform | platformTransform }})
+                {{ medium }} ({{ medium.platform | platformTransform }})
               } @else if (entry == 'BUCH') {
-                {{ medium.titel }} - Seite {{ medium.currentSeite }}/{{ medium.seiten }}
+                {{ medium }} - Seite {{ medium }}/{{ medium }}
               }
             </li>
           }

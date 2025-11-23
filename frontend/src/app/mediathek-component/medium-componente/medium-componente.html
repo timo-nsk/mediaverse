@@ -12,7 +12,7 @@
       @if (medienFilteredByStatus(status).length != 0) {
         <div class="medien-filter-container">
           <h3>{{status | statusTransform}}</h3>
-          <table class="table">
+          <table>
             <tbody>
             <tr *ngFor="let medium of medienFilteredByStatus(status)">
               <ng-container *ngIf="medium.length != 0">

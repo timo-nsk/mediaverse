@@ -104,12 +104,7 @@
 .medien-filter-container {
   padding: 30px;
   margin-bottom: 30px;
-  border: 5px solid #bdbdbd;
+  border: 5px solid #b53131;
   border-radius: 20px;
 }
 
-h2 {
-  margin: 0;
-  color: #3f3f3f;
-  font-weight: bold;
-}
