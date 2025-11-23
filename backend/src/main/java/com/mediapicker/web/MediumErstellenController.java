@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/medium-erstellen")
-@CrossOrigin(origins = "*")
 public class MediumErstellenController {
 
   private final MediathekService mediathekService;
