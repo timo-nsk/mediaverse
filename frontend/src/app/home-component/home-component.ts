@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     this.apiService.getCurrentMedien().subscribe({
       next: data => {
         this.currentMedien = data;
-        console.log(this.currentMedien);
         this.randomMediumService = new RandomMediumService(this.currentMedien)
       }
     })

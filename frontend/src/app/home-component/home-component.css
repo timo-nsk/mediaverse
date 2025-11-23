@@ -45,6 +45,7 @@
 
 #next-container {
   display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
@@ -54,7 +55,7 @@
   justify-content: center;
   gap: 5px;
   height: 40px;
-  width: 205px;
+  width: 100%;
   background-color: #3f3f3f;
   border: 0 none transparent;
   border-radius: 5px;
