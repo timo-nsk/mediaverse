@@ -56,7 +56,6 @@ public class MediathekService {
 
   public Mediathek findMediathekByUser() {
     User user = userDao.findByUsername(username);
-    System.out.println(user);
     return mediathekDao.findByUser(user);
   }
 
