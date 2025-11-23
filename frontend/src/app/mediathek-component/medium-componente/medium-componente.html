@@ -94,7 +94,6 @@
                     <td class="medien-table-td">Band {{ medium.band }}</td>
                     <td class="medien-table-td">
                       <div class="update-wrapper">
-                        <p>Kapitel:</p>
                         <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
                         <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
                         <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
@@ -106,7 +105,6 @@
                   <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
                     <td class="medien-table-td">
                       <div class="update-wrapper">
-                        <p>Seite:</p>
                         <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
                         <span>{{ medium.currentSeite }}/{{medium.seiten}}</span>
                         <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
@@ -118,7 +116,6 @@
                   <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
                     <td class="medien-table-td">
                       <div class="update-wrapper">
-                        <p>Kapitel:</p>
                         <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
                         <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
                         <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
