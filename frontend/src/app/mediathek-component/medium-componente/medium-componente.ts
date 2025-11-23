@@ -6,12 +6,14 @@ import {MediumApiService} from '../../service/api.service';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import {StatusPipe} from '../../status.pipe';
 import {PlatformPipe} from '../../platform.pipe';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
 
 @Component({
   selector: 'app-medium-componente',
-  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe, StatusPipe, PlatformPipe],
+  imports: [MediumErstellenForm, NgForOf, NgIf, DatePipe, StatusPipe, PlatformPipe, FormsModule, ReactiveFormsModule],
   templateUrl: './medium-componente.html',
+  standalone: true,
   styleUrl: './medium-componente.css'
 })
 export class MediumComponente implements OnInit{
@@ -25,6 +27,10 @@ export class MediumComponente implements OnInit{
 
   mediumTyp! : MediumTyp;
   medien! : any[];
+
+  statusForm = new FormGroup({
+    changedStatus: new FormControl(null, Validators.required)
+  })
 
   constructor() {
     effect(() => {
@@ -110,5 +116,12 @@ export class MediumComponente implements OnInit{
         this.ngOnInit()
       }
     });
+  }
+
+  changeStatus(mediumId: string) {
+    console.log("change status of modul: ", mediumId);
+    console.log("status now: ", this.statusForm.get("changedStatus")?.value);
+    let status = this.statusForm.get("changedStatus")?.value;
+    this.mediumApiService.changeStatusByModulId(mediumId, status).subscribe();
   }
 }

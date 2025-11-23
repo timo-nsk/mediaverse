@@ -4,6 +4,7 @@ import com.mediapicker.domain.mediathek.Mediathek;
 import com.mediapicker.domain.mediathek.medium.*;
 import com.mediapicker.service.MediathekService;
 import com.mediapicker.service.MediathekStatistikService;
+import com.mediapicker.web.request.StatusChangeRequestDto;
 import com.mediapicker.web.response.MediathekStatistikResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -80,5 +81,11 @@ public class MediathekController {
   public ResponseEntity<MediathekStatistikResponseDto> getMediathekStatistiken() {
     MediathekStatistikResponseDto resp = mediathekStatistikService.getMediathekStatistik();
     return ResponseEntity.ok(resp);
+  }
+
+  @PostMapping("/change")
+  public ResponseEntity<Void> changeStatus(@RequestBody StatusChangeRequestDto req) {
+    mediathekService.changeStatus(req.mediumId(), req.status());
+    return ResponseEntity.ok().build();
   }
 }

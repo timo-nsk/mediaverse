@@ -94,6 +94,10 @@ public class Medium implements Comparable<Medium> {
     this.status = Status.BEENDET;
   }
 
+  public void setStatus(Status status) {
+    this.status = status;
+  }
+
   public Integer getRating() {
     return rating;
   }

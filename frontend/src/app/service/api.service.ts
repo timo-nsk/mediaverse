@@ -84,4 +84,13 @@ export class MediumApiService {
   getStatistiken() : Observable<MediathekStatistik> {
     return this.http.get<MediathekStatistik>(this.BASE_URL + '/get-mediathek-statistiken');
   }
+
+  changeStatusByModulId(mediumId: string, status: string | null | undefined) {
+    return this.http.post<any>(this.BASE_URL + '/change',
+{
+        mediumId: mediumId,
+        status: status
+      }
+    )
+  }
 }

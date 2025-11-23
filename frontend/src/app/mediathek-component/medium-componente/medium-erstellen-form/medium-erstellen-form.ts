@@ -35,6 +35,7 @@ interface BlazeModalElement extends HTMLElement {
   ],
   templateUrl: './medium-erstellen-form.html',
   styleUrl: './medium-erstellen-form.css',
+  standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MediumErstellenForm implements OnChanges {

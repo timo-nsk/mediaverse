@@ -2,6 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Status} from './domain/medium';
 
 @Pipe({
+  standalone: true,
   name: 'statusTransform'
 })
 export class StatusPipe implements PipeTransform {

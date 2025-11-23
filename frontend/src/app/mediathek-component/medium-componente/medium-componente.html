@@ -89,6 +89,23 @@
                   {{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}
                 </td>
 
+                <!-- STATUS ÄNDERN-->
+                <td class=" medien-table-td">
+                  <form [formGroup]="statusForm">
+                    <select formControlName="changedStatus" (change)="changeStatus(medium.mediumId)">
+                      <option selected disabled [value]="Status.BEENDET">Status ändern</option>
+                      <option [value]="Status.BEENDET">beendet</option>
+                      <option *ngIf="mediumTyp == MediumTyp.FILM || mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME" [value]="Status.AM_SCHAUEN">am Schauen</option>
+                      <option *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL" [value]="Status.AM_SPIELEN">am Spielen</option>
+                      <option *ngIf="mediumTyp == MediumTyp.BUCH || mediumTyp == MediumTyp.MANGA" [value]="Status.AM_LESEN">am Lesen</option>
+                      <option *ngIf="mediumTyp == MediumTyp.PODCAST" [value]="Status.AM_HOEREN">am Hören</option>
+                      <option [value]="Status.GEPLANT">geplant</option>
+                      <option [value]="Status.PAUSIERT">pausiert</option>
+                      <option [value]="Status.ABGEBROCHEN">abgebrochen</option>
+                    </select>
+                  </form>
+                </td>
+
                 <!-- LÖSCHEN BUTTON -->
                 <td class="medien-table-loeschen-td">
                   <div class="loeschen-btn-container">

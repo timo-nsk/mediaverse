@@ -2,6 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Platform, Status} from './domain/medium';
 
 @Pipe({
+  standalone: true,
   name: 'platformTransform'
 })
 export class PlatformPipe implements PipeTransform {

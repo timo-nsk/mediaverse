@@ -200,4 +200,12 @@ public class MediathekService {
         .filter(Medium::isCurrentlyConsuming)
         .collect(Collectors.groupingBy(Medium::getMediumTyp));
   }
+
+  public void changeStatus(UUID mediumId, Status status) {
+    Mediathek mediathek = findMediathekByUser();
+    List<Medium> l = mediathek.getMediaListe();
+    Medium m = l.stream().filter(e -> e.getMediumId().equals(mediumId)).findFirst().get();
+    m.setStatus(status);
+    mediathekDao.save(mediathek);
+  }
 }
