@@ -13,112 +13,163 @@
         <div class="medien-filter-container">
           <h3>{{status | statusTransform}}</h3>
           <table>
-            <tbody>
-            <tr *ngFor="let medium of medienFilteredByStatus(status)">
-              <ng-container *ngIf="medium.length != 0">
-                <!-- TITEL -->
-                <td class="medien-table-td">{{medium.titel}}</td>
-
-                <!-- VIDEOSPIEL -->
+            <thead>
+              <tr>
+                <ng-container *ngIf="mediumTyp == MediumTyp.FILM">
+                  <th class="medien-table-td">Titel</th>
+                  <th class="medien-table-td">Rating</th>
+                  <th class="medien-table-td">Erstellt</th>
+                  <th class="medien-table-td"></th>
+                  <th class="medien-table-td"></th>
+                </ng-container>
                 <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
-                  <td class="medien-table-td">{{ medium.platform | platformTransform}}</td>
+                  <th class="medien-table-td">Titel</th>
+                  <th class="medien-table-td">Platform</th>
+                  <th class="medien-table-td">Rating</th>
+                  <th class="medien-table-td">Erstellt</th>
+                  <th class="medien-table-td"></th>
+                  <th class="medien-table-td"></th>
                 </ng-container>
-
-                <!-- SERIE ANIME -->
                 <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
-                  <td class="medien-table-td">Staffel {{ medium.season }}</td>
-                  <td class="medien-table-td">
-                    <div class="update-wrapper">
-                      <p>Folgen:</p>
-                      <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
-                      <span>{{ medium.currentFolge }}/{{ medium.folgen }}</span>
-                      <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
-                    </div>
-                  </td>
+                  <th class="medien-table-td">Titel</th>
+                  <th class="medien-table-td">Staffel</th>
+                  <th class="medien-table-td">Folgen</th>
+                  <th class="medien-table-td">Rating</th>
+                  <th class="medien-table-td">Erstellt</th>
+                  <th class="medien-table-td"></th>
+                  <th class="medien-table-td"></th>
                 </ng-container>
-
-                <!-- MANGA -->
                 <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
-                  <td class="medien-table-td">Band {{ medium.band }}</td>
-                  <td class="medien-table-td">
-                    <div class="update-wrapper">
-                      <p>Kapitel:</p>
-                      <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
-                      <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
-                      <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
-                    </div>
-                  </td>
+                  <th class="medien-table-td">Titel</th>
+                  <th class="medien-table-td">Band</th>
+                  <th class="medien-table-td">Kapitel</th>
+                  <th class="medien-table-td">Rating</th>
+                  <th class="medien-table-td">Erstellt</th>
+                  <th class="medien-table-td"></th>
+                  <th class="medien-table-td"></th>
                 </ng-container>
-
-                <!-- BUCH -->
                 <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
-                  <td class="medien-table-td">
-                    <div class="update-wrapper">
-                      <p>Seite:</p>
-                      <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
-                      <span>{{ medium.currentSeite }}/{{medium.seiten}}</span>
-                      <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
-                    </div>
-                  </td>
+                  <th class="medien-table-td">Titel</th>
+                  <th class="medien-table-td">Seite</th>
+                  <th class="medien-table-td">Rating</th>
+                  <th class="medien-table-td">Erstellt</th>
+                  <th class="medien-table-td"></th>
+                  <th class="medien-table-td"></th>
                 </ng-container>
-
-                <!-- PODCAST -->
                 <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
+                  <th class="medien-table-td">Titel</th>
+                  <th class="medien-table-td">Kapitel</th>
+                  <th class="medien-table-td">Rating</th>
+                  <th class="medien-table-td">Erstellt</th>
+                  <th class="medien-table-td"></th>
+                  <th class="medien-table-td"></th>
+                </ng-container>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let medium of medienFilteredByStatus(status)">
+                <ng-container *ngIf="medium.length != 0">
+                  <!-- TITEL -->
+                  <td class="medien-table-td">{{medium.titel}}</td>
+
+                  <!-- VIDEOSPIEL -->
+                  <ng-container *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL">
+                    <td class="medien-table-td">{{ medium.platform | platformTransform}}</td>
+                  </ng-container>
+
+                  <!-- SERIE ANIME -->
+                  <ng-container *ngIf="mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME">
+                    <td class="medien-table-td">{{ medium.season }}</td>
+                    <td class="medien-table-td">
+                      <div class="update-wrapper">
+                        <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                        <span>{{ medium.currentFolge }}/{{ medium.folgen }}</span>
+                        <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <!-- MANGA -->
+                  <ng-container *ngIf="mediumTyp == MediumTyp.MANGA">
+                    <td class="medien-table-td">Band {{ medium.band }}</td>
+                    <td class="medien-table-td">
+                      <div class="update-wrapper">
+                        <p>Kapitel:</p>
+                        <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                        <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
+                        <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <!-- BUCH -->
+                  <ng-container *ngIf="mediumTyp == MediumTyp.BUCH">
+                    <td class="medien-table-td">
+                      <div class="update-wrapper">
+                        <p>Seite:</p>
+                        <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                        <span>{{ medium.currentSeite }}/{{medium.seiten}}</span>
+                        <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <!-- PODCAST -->
+                  <ng-container *ngIf="mediumTyp == MediumTyp.PODCAST">
+                    <td class="medien-table-td">
+                      <div class="update-wrapper">
+                        <p>Kapitel:</p>
+                        <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
+                        <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
+                        <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <!-- RATING -->
                   <td class="medien-table-td">
                     <div class="update-wrapper">
-                      <p>Kapitel:</p>
-                      <button class="decrement-btn" (click)="dekrementMedium(medium.mediumId)">-</button>
-                      <span>{{ medium.currentKapitel }}/{{medium.kapitel}}</span>
-                      <button class="inkrement-btn" (click)="inkrementMedium(medium.mediumId)">+</button>
+                      <button class="decrement-btn" (click)="dekrementRating(medium.mediumId)">-</button>
+                      <span>{{medium.rating}}/10</span>
+                      <button class="inkrement-btn" (click)="inkrementRating(medium.mediumId)">+</button>
+                    </div>
+                  </td>
+
+                  <!-- ERSTELLT AM -->
+                  <td class=" medien-table-td">
+                    {{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}
+                  </td>
+
+                  <!-- STATUS ÄNDERN-->
+                  <td class=" medien-table-td">
+                    <form [formGroup]="statusForm">
+                      <select class="form-select" formControlName="changedStatus" (change)="changeStatus(medium.mediumId)">
+                        <option value="" disabled>Status ändern</option>
+                        <option [value]="Status.BEENDET">beendet</option>
+                        <option *ngIf="mediumTyp == MediumTyp.FILM || mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME" [value]="Status.AM_SCHAUEN">am Schauen</option>
+                        <option *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL" [value]="Status.AM_SPIELEN">am Spielen</option>
+                        <option *ngIf="mediumTyp == MediumTyp.BUCH || mediumTyp == MediumTyp.MANGA" [value]="Status.AM_LESEN">am Lesen</option>
+                        <option *ngIf="mediumTyp == MediumTyp.PODCAST" [value]="Status.AM_HOEREN">am Hören</option>
+                        <option [value]="Status.GEPLANT">geplant</option>
+                        <option [value]="Status.PAUSIERT">pausiert</option>
+                        <option [value]="Status.ABGEBROCHEN">abgebrochen</option>
+                      </select>
+                    </form>
+                  </td>
+
+                  <!-- LÖSCHEN BUTTON -->
+                  <td class="medien-table-loeschen-td">
+                    <div class="loeschen-btn-container">
+                      <button class="loeschen-btn" title="Medium löschen" (click)="mediumLoeschen(medium.mediumId)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#bfbfbf" class="bi bi-x-circle loeschen-svg" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                      </button>
                     </div>
                   </td>
                 </ng-container>
-
-                <!-- RATING -->
-                <td class="medien-table-td">
-                  <div class="update-wrapper">
-                    <p>Rating:</p>
-                    <button class="decrement-btn" (click)="dekrementRating(medium.mediumId)">-</button>
-                    <span>{{medium.rating}}/10</span>
-                    <button class="inkrement-btn" (click)="inkrementRating(medium.mediumId)">+</button>
-                  </div>
-                </td>
-
-                <!-- ERSTELLT AM -->
-                <td class=" medien-table-td">
-                  {{medium.erstelltAm | date:'dd.MM.yyyy':'':'de'}}
-                </td>
-
-                <!-- STATUS ÄNDERN-->
-                <td class=" medien-table-td">
-                  <form [formGroup]="statusForm">
-                    <select class="form-select" formControlName="changedStatus" (change)="changeStatus(medium.mediumId)">
-                      <option value="" disabled>Status ändern</option>
-                      <option [value]="Status.BEENDET">beendet</option>
-                      <option *ngIf="mediumTyp == MediumTyp.FILM || mediumTyp == MediumTyp.SERIE || mediumTyp == MediumTyp.ANIME" [value]="Status.AM_SCHAUEN">am Schauen</option>
-                      <option *ngIf="mediumTyp == MediumTyp.VIDEOSPIEL" [value]="Status.AM_SPIELEN">am Spielen</option>
-                      <option *ngIf="mediumTyp == MediumTyp.BUCH || mediumTyp == MediumTyp.MANGA" [value]="Status.AM_LESEN">am Lesen</option>
-                      <option *ngIf="mediumTyp == MediumTyp.PODCAST" [value]="Status.AM_HOEREN">am Hören</option>
-                      <option [value]="Status.GEPLANT">geplant</option>
-                      <option [value]="Status.PAUSIERT">pausiert</option>
-                      <option [value]="Status.ABGEBROCHEN">abgebrochen</option>
-                    </select>
-                  </form>
-                </td>
-
-                <!-- LÖSCHEN BUTTON -->
-                <td class="medien-table-loeschen-td">
-                  <div class="loeschen-btn-container">
-                    <button class="loeschen-btn" title="Medium löschen" (click)="mediumLoeschen(medium.mediumId)">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#bfbfbf" class="bi bi-x-circle loeschen-svg" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-                      </svg>
-                    </button>
-                  </div>
-                </td>
-              </ng-container>
-            </tr>
+              </tr>
             </tbody>
           </table>
         </div>
