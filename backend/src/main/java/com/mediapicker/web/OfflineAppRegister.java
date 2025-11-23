@@ -7,12 +7,14 @@ import com.mediapicker.service.MediathekService;
 import com.mediapicker.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OfflineAppRegister {
 
-  private final String DEFAULT_USER = "off_user";
+  @Value("${app.offline.default.username}")
+  private String DEFAULT_USERNAME;
 
   private final UserService userService;
   private final MediathekService mediathekService;
@@ -25,16 +27,16 @@ public class OfflineAppRegister {
   }
 
   public void setupApplication() {
-    if(!userService.istRegistriertByUsername(DEFAULT_USER)) {
+    if(!userService.istRegistriertByUsername(DEFAULT_USERNAME)) {
       User user = new User(
         null,
-        DEFAULT_USER,
+        DEFAULT_USERNAME,
         "1234",
         "default@default.de"
       );
       Mediathek mediathek = DummyDb.initMediathek(user);
       mediathekService.save(mediathek);
-      log.info("Mediathek für DEFAULT_USER '%s' erstellt.".formatted(DEFAULT_USER));
+      log.info("Mediathek für DEFAULT_USER '%s' erstellt.".formatted(DEFAULT_USERNAME));
     }
 
 
