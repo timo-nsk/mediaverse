@@ -3,3 +3,10 @@ spring:
     name: mediaverse-backend
   profiles:
     active: dev
+server:
+  port: 9756
+  address: 0.0.0.0
+app:
+  offline:
+    default:
+      username: "off_user"
