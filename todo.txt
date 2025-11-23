@@ -1,0 +1,10 @@
+PLANUNG
+- Für Notizen soll ein Modal sich öffnen, wo man neue Notizen anlegen kann.
+- Es soll ein angefangen UND beendet Datum gespeichert werden
+- Es soll der Medium-Domain ein Preis-Feld hinzugefügt werden, wo man den Preis eingeben kann.
+- Medien sollen bearbeitbar gemacht werden.
+
+IN BEARBEITUNG
+- In den Tabellen soll auch ein th sein, anstatt dass in den td "Folgen" etc steht
+
+FERTIG
